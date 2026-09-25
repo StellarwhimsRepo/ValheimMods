@@ -1,0 +1,18 @@
+name: Mirror to Forgejo
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch upstream
+        run: |
+          git clone --mirror https://github.com/StellarwhimsRepo/ValheimMods.git upstream
+          cd upstream
+          git remote add target https://StellarWhimsRepo:{{ secrets.FORGEJO_PAT }}@forgejo.stellarwhims.com/StellarwhimsRepo/ValheimMods_Mirror.git
+          git push target --mirror
