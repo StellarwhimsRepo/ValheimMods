@@ -14,5 +14,5 @@ jobs:
         run: |
           git clone --mirror https://github.com/StellarwhimsRepo/ValheimMods.git upstream
           cd upstream
-          git remote add target https://StellarWhimsRepo:{{ secrets.FORGEJO_PAT }}@forgejo.stellarwhims.com/StellarwhimsRepo/ValheimMods_Mirror.git
+          git remote add target https://StellarWhimsRepo:{{ secrets.VALHEIMMODS_FORGJOMIRROR }}@forgejo.stellarwhims.com/StellarwhimsRepo/ValheimMods_Mirror.git
           git push target --mirror
