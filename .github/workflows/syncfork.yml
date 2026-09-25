@@ -15,7 +15,8 @@ jobs:
         with:
           fetch-depth: 0
           ref: main
-
+          token: ${{ secrets.FORKSYNC_PAT }}
+          
       - name: Add upstream
         run: |
           git remote add upstream https://github.com/RandyKnapp/ValheimMods.git
