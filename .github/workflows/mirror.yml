@@ -12,7 +12,12 @@ jobs:
     steps:
       - name: Fetch upstream
         run: |
-          git clone --mirror https://github.com/StellarwhimsRepo/ValheimMods.git upstream
+          if [ ! -d upstream ]; then
+            git clone --mirror https://github.com/StellarwhimsRepo/ValheimMods.git upstream
+          else
+            cd upstream
+            git fetch --all
+          fi
           cd upstream
           git remote add target https://StellarWhimsRepo:${{ secrets.VALHEIMMODS_FORGJOMIRROR }}@forgejo.stellarwhims.com/StellarwhimsRepo/ValheimMods_Mirror.git
           git push target --mirror
